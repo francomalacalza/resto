@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/francomalacalza/delilahresto.git"
+    "url": "git+https://github.com/francomalacalza/resto.git"
   },
   "keywords": [
     "backend",
@@ -29,7 +29,7 @@
   "author": "Franco Malacalza",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/francomalacalza/delilahresto/issues"
+    "url": "https://github.com/francomalacalza/resto/issues"
   },
-  "homepage": "https://github.com/francomalacalza/delilahresto#readme"
+  "homepage": "https://github.com/francomalacalza/resto#readme"
 }
