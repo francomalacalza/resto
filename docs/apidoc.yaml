@@ -1,0 +1,311 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Delilah Resto
+  description: Delilah API
+servers: 
+  - url: http://localhost:3000/
+    description: Servidor local
+tags:
+  - name: Users
+  - name: Products
+  - name: Orders
+
+paths:
+  /signup:
+    post:
+      tags:
+        - Users
+      summary: Registra nuevo usuario
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/signup'
+        '403':
+          description: invalid data
+          content: {}
+        '400':
+          description: invalid data
+          content: {}
+  /login:
+    post:
+      tags:
+        - Users
+      summary: Iniciar sesión
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/login'
+        '401':
+          description: invalid data
+          content: {}
+  /users:
+    get:
+      tags: 
+        - Users
+      summary: obtiene info de usuarios
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/users'
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Lista los productos disponibles
+      parameters:
+        - name: Bearer token
+          in: header
+          description: token de usuario logueado
+          schema:
+            type: string
+            example: >-
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/products'
+  /newproduct:
+    post:
+      tags:
+        - Products
+      summary: Crea nuevo producto
+      parameters:
+        - name: Bearer token
+          in: header
+          description: token de usuario
+          schema:
+            type: string
+            example: >-
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/newproduct'
+        '400':
+          description: invalid data
+          content: {}
+  /product:
+    put:
+      tags: 
+        - Products
+      summary: Edita un producto
+      parameters:
+        - name: Bearer token
+          in: header
+          description: token de usuario
+          schema:
+            type: string
+            example: >-
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+          required: true
+        - name: '/:id'
+          in: path
+          description: id del producto
+          schema:
+            type: integer
+            example: 1
+          required: true  
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/products'
+        '400':
+          description: invalid data
+          content: {}
+    delete:
+      tags:
+        - Products
+      summary: Elimina un producto
+      parameters:
+        - name: Bearer token
+          in: header
+          description: token de usuario
+          schema:
+            type: string
+            example: >-
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+          required: true
+        - name: '/:id'
+          in: path
+          description: id del producto
+          schema:
+            type: integer
+            example: 1
+          required: true  
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/products' 
+        '400':
+          description: invalid data
+          content: {}
+  /neworder:
+    post:
+      tags:
+        - Orders
+      summary: Crea un pedido
+      parameters:
+        - name: Bearer token
+          in: header
+          description: token de usuario
+          schema:
+            type: string
+            example: >-
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Orden creada. ID "
+                  rta:
+                    type: integer
+                    description: id del pedido creado
+                    example: 5
+  /order:
+    put:
+      tags:
+        - Orders
+      summary: Actualiza estado de pedido
+      parameters:
+        - name: Bearer token
+          in: header
+          description: token de usuario
+          schema:
+            type: string
+            example: >-
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+          required: true
+        - name: '/:id'
+          in: path
+          description: id del pedido
+          schema:
+            type: integer
+            example: 1
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Estado actualizado"
+                  rta:
+                    type: number
+                    description: id pedido actualizado
+                    example: 6
+        '400':
+          description: invalid data
+          content: {}
+components:
+  schemas:
+    login:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: Breve mensaje sobre la consulta
+          example: Bienvenido a Delilah Restó
+        token:
+          type: string
+          description: token para utilizar el resto de las apis
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+    signup:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: Breve mensaje sobre la consulta
+          example: Usuario registrado
+        token:
+          type: string
+          description: token de usuario
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+    products:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: Breve mensaje sobre la consulta
+          example: Productos de Delilah Resto
+        rta:
+          type: array
+          items:
+            $ref: '#/components/schemas/products'
+    newproduct:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: Breve mensaje sobre la consulta
+          example: "Producto creado"
+        rta:
+          type: array
+          items:
+            type: object
+            properties: 
+              name:
+                type: string
+                example: Piza grande
+              description:
+                type: string
+                example: Piza 12 porciones
+              ingredients:
+                type: string
+                example: queso, jamon y morron
+              price:
+                type: number
+                example: 300
+              img:
+                type: string
+                example: 'https://via.placeholder.com/732'

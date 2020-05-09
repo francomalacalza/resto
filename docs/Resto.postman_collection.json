@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "de3d4a84-c23c-4da7-ad4e-4945930247c9",
+		"name": "Resto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"user4\",\r\n  \"fullname\": \"user3\",\r\n  \"password\": \"5678\",\r\n  \"email\": \"user4@gmail.com\",\r\n  \"phone\": \"1234567\",\r\n  \"address\": \"Calle Falsa 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"signup"
+							]
+						},
+						"description": "Creacion de usuario nuevo"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"franco\",\r\n  \"password\": \"5678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						},
+						"description": "Inicio de sesion de usuarios admin/no admin"
+					},
+					"response": []
+				},
+				{
+					"name": "User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJ1c2VyMyIsImZ1bGxuYW1lIjoidXNlcjMiLCJwYXNzd29yZCI6IjU2NzgiLCJlbWFpbCI6InVzZXIzQGdtYWlsLmNvbSIsInBob25lIjoxMjM0NTY3LCJhZGRyZXNzIjoiQ2FsbGUgRmFsc2EgMTIzIiwiaXNfYWRtaW4iOjAsImlhdCI6MTU4NzE2NzMxNn0.QvcaLFycYBp-jS-mhlIM8dH4ywvBe55v_igwBiXczhs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Solicita informacion de usuarios. \nSolicitud por usuario no admin: puede acceder solo a informacion propia.\nSolicitud por usuario admin: puede acceder a la informacion de los demas usuarios."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Products List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJ1c2VyMyIsImZ1bGxuYW1lIjoidXNlcjMiLCJwYXNzd29yZCI6IjU2NzgiLCJlbWFpbCI6InVzZXIzQGdtYWlsLmNvbSIsInBob25lIjoxMjM0NTY3LCJhZGRyZXNzIjoiQ2FsbGUgRmFsc2EgMTIzIiwiaXNfYWRtaW4iOjAsImlhdCI6MTU4NzE2NzMxNn0.QvcaLFycYBp-jS-mhlIM8dH4ywvBe55v_igwBiXczhs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						},
+						"description": "Show available products"
+					},
+					"response": []
+				},
+				{
+					"name": "New product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiZnJhbmNvIiwiZnVsbG5hbWUiOiJGcmFuIENvIiwicGFzc3dvcmQiOiI1Njc4IiwiZW1haWwiOiJmcmFuY29AZ21haWwuY29tIiwicGhvbmUiOjEyMzQ1NjcsImFkZHJlc3MiOiJDYWxsZSBGYWxzYSAxMjMiLCJpc0FkbWluIjoxLCJpYXQiOjE1ODg5NjUzOTB9.ojZk5mYY5TIlC_vH276KMVKnaKtAQIPolIMJIjvWzUg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Flan\",\n\t\"price\": 50,\n\t\"description\": \"Flan de vainilla con dulce de leche\",\n\t\"imgUrl\": \"https://via.placeholder.com/223\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/newproduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"newproduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiZnJhbmNvIiwiZnVsbG5hbWUiOiJGcmFuIENvIiwicGFzc3dvcmQiOiI1Njc4IiwiZW1haWwiOiJmcmFuY29AZ21haWwuY29tIiwicGhvbmUiOjEyMzQ1NjcsImFkZHJlc3MiOiJDYWxsZSBGYWxzYSAxMjMiLCJpc0FkbWluIjoxLCJpYXQiOjE1ODg5NjUzOTB9.ojZk5mYY5TIlC_vH276KMVKnaKtAQIPolIMJIjvWzUg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Flan\",\n\t\"price\": 70,\n\t\"description\": \"Flan de vainilla con dulce de leche\",\n\t\"imgUrl\": \"https://via.placeholder.com/223\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/product/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiZnJhbmNvIiwiZnVsbG5hbWUiOiJGcmFuIENvIiwicGFzc3dvcmQiOiI1Njc4IiwiZW1haWwiOiJmcmFuY29AZ21haWwuY29tIiwicGhvbmUiOjEyMzQ1NjcsImFkZHJlc3MiOiJDYWxsZSBGYWxzYSAxMjMiLCJpc0FkbWluIjoxLCJpYXQiOjE1ODg5NjUzOTB9.ojZk5mYY5TIlC_vH276KMVKnaKtAQIPolIMJIjvWzUg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/product/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "New order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoidXNlcjMiLCJmdWxsbmFtZSI6InVzZXIzIiwicGFzc3dvcmQiOiI1Njc4IiwiZW1haWwiOiJ1c2VyM0BnbWFpbC5jb20iLCJwaG9uZSI6MTIzNDU2NywiYWRkcmVzcyI6IkNhbGxlIEZhbHNhIDEyMyIsImlzQWRtaW4iOjAsImlhdCI6MTU4ODg5MzM2NH0.1SJTQtfRzPfBxyZd0eW5ZNtHNB3-9yyae6_9eVGmiDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"products\": [\n        {\n            \"productId\": 1,\n            \"amount\": 2\n        },\n        {\n            \"productId\": 3,\n            \"amount\": 3\n        }\n    ],\n    \"paymentMethod\": \"cash\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/neworder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"neworder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit order status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiZnJhbmNvIiwiZnVsbG5hbWUiOiJGcmFuIENvIiwicGFzc3dvcmQiOiI1Njc4IiwiZW1haWwiOiJmcmFuY29AZ21haWwuY29tIiwicGhvbmUiOjEyMzQ1NjcsImFkZHJlc3MiOiJDYWxsZSBGYWxzYSAxMjMiLCJpc0FkbWluIjoxLCJpYXQiOjE1ODg5NjUzOTB9.ojZk5mYY5TIlC_vH276KMVKnaKtAQIPolIMJIjvWzUg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"orderStatus\": \"Confirmado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/order/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
