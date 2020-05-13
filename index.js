@@ -6,8 +6,9 @@ const jwt = require('jsonwebtoken')
 const signature = 'my_secret'
 
 // CONEXION A BD
+const db = require('./database/config.js');
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('mysql://root:1234@localhost:3306/resto')
+const sequelize = new Sequelize('mysql://' + db.user + ':' + db.password + '@' + db.url + ':' + db.port + '/' + db.name)
 
 // STARTUP
 server.use(bp.json())
@@ -122,6 +123,19 @@ server.put('/order/:id', validateToken, isAdmin, async (req, res) => {
 })
 
 // condicion 5
+
+server.delete('/order/:id', validateToken, isAdmin, async (req, res) =>{
+    const orderId = req.params.id
+    const order = await searchByParam('orders', 'orderId', orderId)
+    if(order.length > 0){
+        await deleteByParam('order_products', 'orderId', orderId)
+        await deleteByParam('orders', 'orderId', orderId)
+        res.status(200).json('Pedido eliminado')
+    }else{
+        res.status(400).json('No existe pedido con id ' + orderId)
+    }
+})
+
 server.post('/newproduct', validateToken, isAdmin, async (req, res) => {
     const { name, price, description, imgUrl } = req.body
 
@@ -154,12 +168,13 @@ server.delete('/product/:id', validateToken, isAdmin, async (req, res) =>{
     const productId = req.params.id
     const product = await searchByParam('products', 'productId', productId)
     if(product.length > 0){
-        sequelize.query(`DELETE FROM products WHERE productId = ${productId}`)
+        sequelize.query(`UPDATE products SET available = 0 WHERE productId = ${productId}`)
         .then(res.status(200).json('Producto eliminado'))
     }else{
         res.status(400).json('No existe producto con id ' + productId)
     }
 })
+
 
 // FUNCIONES
 
@@ -176,6 +191,13 @@ async function searchByParam (table, filter, inputParam){
     { replacements: [inputParam], type: sequelize.QueryTypes.SELECT })
     console.log(searchResult)
     return searchResult
+}
+
+async function deleteByParam (table, filter, inputParam){
+    sequelize.query(`DELETE FROM ${table} WHERE ${filter} = ?`,
+    { replacements: [inputParam] })
+    console.log('Eliminado')
+    return 
 }
 
 async function searchTable (table){

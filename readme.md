@@ -1,7 +1,7 @@
 -- INSTALACION E INICIALIZACION
 Crear base de datos y establecer conexion:
     # Para la creacion de la base de datos se deben ejecutar las queries incluidas en el archivo 'querys.sql' que se encuentra en la carpeta 'database', o importar mediante el archivo 'database_resto.sql' dentro de la misma carpeta
-    # Dentro del archivo 'index.js' modificar la cadena de conexion a la base de datos (linea 10)
+    # Dentro de la misma carpeta se encuentra el archivo 'config.js', donde podes modificar los parametros de conexion a la base de datos
 
 
 Correr servidor:

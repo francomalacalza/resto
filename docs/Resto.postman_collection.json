@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "de3d4a84-c23c-4da7-ad4e-4945930247c9",
 		"name": "Resto",
+		"description": "API del Proyecto 3 de Acamica\n\nPara testear los diferentes endpoints primero debe generar un token valido mediante el endpoint de Login",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -15,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"user4\",\r\n  \"fullname\": \"user3\",\r\n  \"password\": \"5678\",\r\n  \"email\": \"user4@gmail.com\",\r\n  \"phone\": \"1234567\",\r\n  \"address\": \"Calle Falsa 123\"\r\n}",
+							"raw": "{\r\n  \"username\": \"user42\",\r\n  \"fullname\": \"user3\",\r\n  \"password\": \"5678\",\r\n  \"email\": \"user4@gmail.com\",\r\n  \"phone\": \"1234567\",\r\n  \"address\": \"Calle Falsa 123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -47,7 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"franco\",\r\n  \"password\": \"5678\"\r\n}",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,7 +66,7 @@
 								"login"
 							]
 						},
-						"description": "Inicio de sesion de usuarios admin/no admin"
+						"description": "Usuario admin -> user: admin\n\t\t\t\tpassword: admin\n/\nno admin -> user: user2\n\t\t\tpassword: 5678"
 					},
 					"response": []
 				},
@@ -140,7 +141,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Flan\",\n\t\"price\": 50,\n\t\"description\": \"Flan de vainilla con dulce de leche\",\n\t\"imgUrl\": \"https://via.placeholder.com/223\"\n}",
+							"raw": "{\n\t\"name\": \"Piza grande\",\n\t\"price\": 350,\n\t\"description\": \"Piza 12 porciones\",\n\t\"imgUrl\": \"https://via.placeholder.com/223\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,7 +175,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Flan\",\n\t\"price\": 70,\n\t\"description\": \"Flan de vainilla con dulce de leche\",\n\t\"imgUrl\": \"https://via.placeholder.com/223\"\n}",
+							"raw": "{\n\t\"name\": \"Agua tonica\",\n\t\"price\": 70,\n\t\"description\": \"Agua con gas\",\n\t\"imgUrl\": \"https://via.placeholder.com/223\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -182,7 +183,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/product/5",
+							"raw": "http://localhost:3000/product/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -190,7 +191,7 @@
 							"port": "3000",
 							"path": [
 								"product",
-								"5"
+								"3"
 							]
 						}
 					},
@@ -208,7 +209,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/product/5",
+							"raw": "http://localhost:3000/product/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -216,7 +217,7 @@
 							"port": "3000",
 							"path": [
 								"product",
-								"5"
+								"3"
 							]
 						}
 					},
@@ -292,6 +293,32 @@
 							"path": [
 								"order",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiZnJhbmNvIiwiZnVsbG5hbWUiOiJGcmFuIENvIiwicGFzc3dvcmQiOiI1Njc4IiwiZW1haWwiOiJmcmFuY29AZ21haWwuY29tIiwicGhvbmUiOjEyMzQ1NjcsImFkZHJlc3MiOiJDYWxsZSBGYWxzYSAxMjMiLCJpc0FkbWluIjoxLCJpYXQiOjE1ODg5NjUzOTB9.ojZk5mYY5TIlC_vH276KMVKnaKtAQIPolIMJIjvWzUg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/order/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"4"
 							]
 						}
 					},

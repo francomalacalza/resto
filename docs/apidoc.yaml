@@ -45,7 +45,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/login'
+                  $ref: '#/components/schemas/users'
         '401':
           description: invalid data
           content: {}
@@ -245,9 +245,41 @@ paths:
         '400':
           description: invalid data
           content: {}
+    delete:
+      tags:
+        - Orders
+      summary: Elimina un pedido
+      parameters:
+        - name: Bearer token
+          in: header
+          description: token de usuario
+          schema:
+            type: string
+            example: >-
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
+          required: true
+        - name: '/:id'
+          in: path
+          description: id del pedido
+          schema:
+            type: integer
+            example: 1
+          required: true  
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/orders'
+        '400':
+          description: invalid data
+          content: {}
 components:
   schemas:
-    login:
+    signup:
       type: object
       properties:
         msg:
@@ -259,7 +291,7 @@ components:
           description: token para utilizar el resto de las apis
           example: >-
             eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJmZWNoYSI6MTU4ODExOTQ3OTczNywiaWF0IjoxNTg4MTE5NDc5fQ.GepGC9_vJ9pQH15BAtx1P5xV7AEhdj2mhHqvi1I826o
-    signup:
+    users:
       type: object
       properties:
         msg:
@@ -309,3 +341,14 @@ components:
               img:
                 type: string
                 example: 'https://via.placeholder.com/732'
+    orders:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: Breve mensaje sobre la consulta
+          example: Pedidos de Delilah Resto
+        rta:
+          type: array
+          items:
+            $ref: '#/components/schemas/orders'
